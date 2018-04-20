@@ -1,0 +1,64 @@
+﻿@using GridMvc.Html
+@model IEnumerable<Blueapp.Models.ItemModel>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" /> 
+<script src="~/Scripts/jquery-3.0.0.min.js"></script> 
+<link href="~/Content/Gridmvc.css" rel="stylesheet" /> 
+<script src="~/Scripts/gridmvc.min.js"></script>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reviewDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reminder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.completionStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.completetionDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reviewDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reminder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.completionStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.completetionDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
