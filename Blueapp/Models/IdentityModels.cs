@@ -29,5 +29,7 @@ namespace Blueapp.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Blueapp.Models.ItemModel> ItemModels { get; set; }
     }
 }

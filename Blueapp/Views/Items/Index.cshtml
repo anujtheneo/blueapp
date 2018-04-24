@@ -16,49 +16,17 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.reviewDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.reminder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.completionStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.completetionDate)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.reviewDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.reminder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.completionStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.completetionDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+<body>
+    <div style="width:500px;">
+        @Html.Grid(Model).Columns(columns =>
+   {
+       columns.Add(item => item.name).Titled(Html.DisplayNameFor(item => item.name).ToString()).Filterable(true).Sanitized(false).Encoded(false)
+       .RenderValueAs(item => Html.ActionLink(item.name, "Detail", "Items", new { item.id}, null));
+       columns.Add(item => item.reviewDate).Titled(Html.DisplayNameFor(item => item.reviewDate).ToString());
+       columns.Add(item => item.completionStatus).Titled(Html.DisplayNameFor(item => item.completionStatus).ToString());
+       columns.Add(item => item.itemType).Titled(Html.DisplayNameFor(item => item.itemType).ToString());
 
-</table>
+   }).WithPaging(3).Sortable(true)
+    </div>
+</body>
